@@ -6,8 +6,11 @@ import Footer from "@/components/footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next App",
-  description: "Next.js starter app",
+  title: {
+    default: "WolfDev Homepage",
+    template: "%s | WolfDev",
+  },
+  description: "Premium creativity at its peak",
 };
 
 export default function RootLayout({ children }) {

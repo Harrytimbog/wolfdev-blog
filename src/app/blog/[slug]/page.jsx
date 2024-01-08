@@ -1,5 +1,17 @@
 import Image from "next/image";
 import styles from "./singlePost.module.css";
+import { getPosts } from "@/lib/actions/post.action";
+
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+
+  const post = await getPosts();
+
+  return {
+    title: post.title,
+    description: post.description,
+  };
+};
 
 const SinglePostPage = () => {
   return (
