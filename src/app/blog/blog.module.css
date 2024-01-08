@@ -8,6 +8,10 @@
   width: 30%;
 }
 
+.emptyPosts {
+  color: white;
+}
+
 @media screen and (max-width: 1280px) {
   .post {
     width: 45%;
