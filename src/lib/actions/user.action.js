@@ -1,7 +1,13 @@
 "use server";
 
+import { signIn } from "../auth";
 import { User } from "../models/user";
 import { connectToDb } from "../utils/database";
+
+export const handleGithubLogin = async () => {
+  "use server";
+  await signIn("github");
+};
 
 export const getUser = async (id) => {
   try {
