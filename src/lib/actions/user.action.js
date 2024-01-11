@@ -28,7 +28,7 @@ export const login = async (prevState, formData) => {
     if (error.message.includes("CredentialsSignin")) {
       return { error: "Invalid username or password" };
     }
-    return { error: "Something went wrong!" };
+    throw error;
   }
 };
 

@@ -10,8 +10,6 @@ export const connectToDb = async () => {
 
     const db = await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "next14TUTE",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       // You can add more options as needed
     });
 
