@@ -1,9 +1,9 @@
-import { deleteUser, getUser } from "@/lib/actions/user.action";
+import { deleteUser, getAllUsers } from "@/lib/actions/user.action";
 import styles from "./adminUsers.module.css";
 import Image from "next/image";
 
 const AdminUsers = async () => {
-  const users = await getUser();
+  const users = await getAllUsers();
 
   return (
     <div className={styles.container}>

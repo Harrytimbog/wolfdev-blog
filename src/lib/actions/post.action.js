@@ -18,16 +18,16 @@ export const getPosts = async () => {
 
 export const addPost = async (prevState, formData) => {
   // const title = formData.get("title");
-  // const desc = formData.get("desc");
+  // const description = formData.get("description");
   // const slug = formData.get("slug");
 
-  const { title, desc, slug, userId } = Object.fromEntries(formData);
+  const { title, description, slug, userId } = Object.fromEntries(formData);
 
   try {
     connectToDb();
     const newPost = new Post({
       title,
-      desc,
+      description,
       slug,
       userId,
     });
@@ -41,7 +41,6 @@ export const addPost = async (prevState, formData) => {
     return { error: "Something went wrong!" };
   }
 };
-
 
 export const getPost = async (slug) => {
   try {
