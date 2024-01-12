@@ -1,6 +1,8 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { signIn, signOut } from "../auth";
+import { Post } from "../models/post";
 import { User } from "../models/user";
 import { connectToDb } from "../utils/database";
 import bcrypt from "bcrypt";
@@ -90,5 +92,44 @@ export const getAllUsers = async () => {
   } catch (error) {
     console.log(error);
     throw new Error("Failed to fetch users!");
+  }
+};
+
+//// Admin specific Actions
+
+export const addUser = async (prevState, formData) => {
+  const { username, email, password, image } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+    const newUser = new User({
+      username,
+      email,
+      password,
+      image,
+    });
+
+    await newUser.save();
+    console.log("saved to db");
+    revalidatePath("/admin");
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
+  }
+};
+
+export const deleteUser = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    await Post.deleteMany({ userId: id });
+    await User.findByIdAndDelete(id);
+    console.log("deleted from db");
+    revalidatePath("/admin");
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
   }
 };
