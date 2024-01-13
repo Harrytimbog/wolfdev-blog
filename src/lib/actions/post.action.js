@@ -42,14 +42,25 @@ export const addPost = async (prevState, formData) => {
   }
 };
 
+// export const getPost = async (slug) => {
+//   try {
+//     await connectToDb();
+//     const post = await Post.findById({ slug });
+//     console.log(post);
+//     return post;
+//   } catch (error) {
+//     console.log(error);
+//     throw new Error("Failed to fetch post!");
+//   }
+// };
+
 export const getPost = async (slug) => {
   try {
-    await connectToDb();
-    const post = await Post.findById({ slug });
-
+    connectToDb();
+    const post = await Post.findOne({ slug });
     return post;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     throw new Error("Failed to fetch post!");
   }
 };

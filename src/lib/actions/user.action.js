@@ -74,7 +74,8 @@ export const register = async (previousState, formData) => {
 export const getUser = async (id) => {
   try {
     await connectToDb();
-    const user = await User.findById({ id });
+    const user = await User.findById({ _id: id });
+    // console.log(user);
 
     return user;
   } catch (error) {
